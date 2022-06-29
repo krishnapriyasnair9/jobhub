@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div class="container">
-    <div class="row">
+{%extends 'index.html'%}
+{%block body_block%}
+<div class="row">
+    <h1 class="text-center">LOGIN NOW</h1>
         <div class="col-4"></div>
-        <div class="col-4">
-            <form action="" method="post">
+        <div class="col-4 text-dark bg-danger">
+            <form action="" method="post" class="text-center">
                 {%csrf_token%}
                 {{form.as_p}}
                 <input type="submit">
@@ -17,7 +12,4 @@
         </div>
         <div class="col-4"></div>
     </div>
-</div>
-
-</body>
-</html>
+{%endblock%}

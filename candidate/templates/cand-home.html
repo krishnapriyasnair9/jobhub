@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1 class="text-danger text-center">WELCOME {{request.user}}</h1>
+{%if request.user.candidates%}
+<a href="{%url 'cand-profiledetail' %}" class="btn btn-danger">VIEW PROFILE</a>
+{%else%}
+<a href="{%url 'cand-addprofile' %}" class="btn btn-primary">ADD PROFILES</a>
+{%endif%}
+<a href="{%url 'cand-appdetail'%}" class="btn btn-secondary">MY APPLICATIONS</a>
+
+<br>
+<br>
+<br>
+<div class="row mt-3 p-4">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <form action="" method="get">
+            <div class="row p-2 text-danger" >
+                <div class="col-2">Posted_by:{{filter.form.posted_by}}</div>
+                <div class="col-2">Title:{{filter.form.job_title}}</div>
+                <div class="col-2">role:{{filter.form.role}}</div>
+                <div class="col-2">location:{{filter.form.location}}</div>
+                <div class="col-2">salary:{{filter.form.salary}}</div>
+                <div class="col-2">qualification:{{filter.form.qualification}}</div>
+                <div class="col-2">
+                    <input  class="btn btn-danger" type="submit">
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<br>
+<div class="container">
+    <div class="row mb-5">
+        {%for job in filter.qs%}
+        <div class="col-4">
+            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">{{job.job_title}}</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{job.role}}</h5>
+                    <p class="card-text">{{job.description}}</p>
+                    <p class="card-text">{{job.posted_by.username}}</p>
+
+                </div>
+                <div class="card-footer bg-transparent border-success"><a href="{%url 'cand-detailjob' job.id%}"
+                                                                          class="btn btn-success">VIEW</a></div>
+                <a href="{%url 'notifications' %}" class="btn btn-primary">NOTIFICATIONS</a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+
+</div>
+
+</body>
+</html>

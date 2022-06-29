@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {%if allapp %}
+            {%for app in allapp%}
+
+            <h5>Application For {{app.job.job_title}}</h5>
+            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">NAME:{{app.applicant}}</div>
+                <div class="card-body text-success">
+                    <p class="card-text">Applied Date:{{app.date}}</p>
+                    <p class="card-text">Qualification:{{app.applicant.candidates.qualification}}</p>
+                    <p class="card-text">CV:{{app.applicant.candidates.cv}}</p>
+
+
+                </div>
+
+                <div class="card-footer bg-transparent border-success">
+
+
+                    <a href="{%url 'view-detail' app.id%}" class="btn btn-success">VIEW PROFILE</a></div>
+
+                {%endfor%}
+
+                {%else%}
+                <h5>NO NEW APLICATIONS</h5>
+                {%endif%}
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+</body>
+</html>

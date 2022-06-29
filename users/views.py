@@ -1,17 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from users.forms import UserRegistrationForm,LoginForm
-from django.views.generic import CreateView,FormView
+from django.views.generic import CreateView,FormView,TemplateView
 from users.models import User
 from django.urls import reverse_lazy
 
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+class Home(TemplateView):
+    template_name = "index.html"
 class SignUpView(CreateView):
     model=User
     template_name = "register.html"
     form_class = UserRegistrationForm
-    success_url = reverse_lazy("signup")
+    success_url = reverse_lazy("signin")
 
 
 class SingnInView(FormView):
@@ -29,11 +31,9 @@ class SingnInView(FormView):
                 return render(request,"login.html",{"form":form})
             login(request,user)
             if request.user.is_candidate:
-                return render(request,"candidatehome.html")
+                return redirect("cand-home")
             else:
-                return render(request,"emphome.html")
-                
+                return redirect("emp-home")
 
-           
 
 

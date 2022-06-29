@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">{{job.job_title}}</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">{{job.role}}</h5>
+                    <p class="card-text">{{job.job_description}}</p>
+                    <p class="card-text">{{job.experience}}</p>
+                    <p class="card-text">{{job.location}}</p>
+                    <p class="card-text">{{job.salary}}</p>
+                    <p class="card-text">{{job.last_date}}</p>
+                    <p class="card-text">{{job.qualification}}</p>
+
+
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                    {%if status%}
+                    <a href="#" class="btn btn-success">APPLIED</a>
+                    {%else%}
+
+                    <a href="{%url 'apply-now' job.id%}" class="btn btn-success">APPLY NOW</a></div>
+                    {%endif%}
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+</body>
+</html>
